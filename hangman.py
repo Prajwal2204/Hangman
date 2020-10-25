@@ -15,11 +15,11 @@ def countdown(a):
     #print(len(len_arr))
     word_len = len(a)
     if word_len > 0 and word_len <= 5:
-        t = 6    # 60 secs for a word of length between 0 and 5 
+        t = 60    # 60 secs for a word of length between 0 and 5 
     elif word_len > 5 and word_len <= 10:
-        t = 12     # 120 secs for a word of length between 5 and 10 
+        t = 120     # 120 secs for a word of length between 5 and 10 
     else:
-        t = 30     # 300 secs for a word of length more than 10
+        t = 300     # 300 secs for a word of length more than 10
     # YOU CAN CHECK WITH LESSER TIME LIMIT AS WELL FOR SIMPLICITY
 
     print('You have ' + str(t) + ' seconds')
