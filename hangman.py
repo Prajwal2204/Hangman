@@ -1,7 +1,34 @@
 import random
+from threading import Thread
 from bs4 import BeautifulSoup
 import urllib.request
 import requests
+from time import sleep
+import sys
+
+def countdown():
+
+    len_arr = [] 
+    words=['moon','goat','malayalam','tomato','pumpkin']
+    for i in words:
+        len_arr.append(len(i))
+
+    for i in range(0, len(len_arr)):
+        if len_arr[i] > 0 and len_arr[i] <= 5:
+            t = 60    # 60 secs for a word of length between 0 and 5 
+        elif len_arr[i] > 5 and len_arr[i] <= 10:
+            t = 120     # 120 secs for a word of length between 5 and 10 
+        else:
+            t = 300     # 300 secs for a word of length more than 10
+    # YOU CAN CHECK WITH LESSER TIME LIMIT AS WELL FOR SIMPLICITY
+
+    print('You have ' + str(t) + ' seconds')
+
+    for i in range(t):
+        sleep(1)   
+    
+    print('Time up!!')
+    sys.exit()    
 
 
 def hangman(tally):
@@ -16,10 +43,14 @@ def hangman(tally):
     for i in range (0, len(a)):
         b= b+'_'
         print(b[i] ,end= ' ')
-    
+    print('\n')
     guess=[]
     count=tally[0]
     points=tally[1]
+    
+    t1 = Thread(target=countdown)
+    t1.start()
+
     while(count>0):
         print('\n\nYou have ' +str(count)+' chances to guess the word')
         x=input("Enter an alphabet: ")[0]
@@ -61,9 +92,12 @@ def hangman(tally):
         tally[1]=points
         return tally
 
+ 
+
 print('HANGMAN')
 tally=[7,0]
 print(type(tally[0]))
+
 while(1):
     x=input('Press:\n 1.To play a new game \n 2. Continue existing game \n 3. Exit\n')
     x=int(x)
