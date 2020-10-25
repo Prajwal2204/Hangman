@@ -5,6 +5,7 @@ import urllib.request
 import requests
 from time import sleep
 import sys
+import os
 
 def countdown(a):
 
@@ -19,7 +20,7 @@ def countdown(a):
     elif word_len > 5 and word_len <= 10:
         t = 120     # 120 secs for a word of length between 5 and 10 
     else:
-        t = 300     # 300 secs for a word of length more than 10
+        t = 300    # 300 secs for a word of length more than 10
     # YOU CAN CHECK WITH LESSER TIME LIMIT AS WELL FOR SIMPLICITY
 
     print('You have ' + str(t) + ' seconds')
@@ -28,12 +29,10 @@ def countdown(a):
         sleep(1)   
     
     print('Time up!!')
-    print('Your word was '+a)
-    sys.exit()    
-
+    print('Your word was '+a)    
+    os._exit(1)
 
 def hangman(tally):
-
     words=['moon','goat','malayalam','tomato','pumpkin']
     x=random.randint(0,len(words)-1)
     a=random.choice(words)
