@@ -6,20 +6,20 @@ import requests
 from time import sleep
 import sys
 
-def countdown():
+def countdown(a):
 
     len_arr = [] 
     words=['moon','goat','malayalam','tomato','pumpkin']
     for i in words:
         len_arr.append(len(i))
-
-    for i in range(0, len(len_arr)):
-        if len_arr[i] > 0 and len_arr[i] <= 5:
-            t = 60    # 60 secs for a word of length between 0 and 5 
-        elif len_arr[i] > 5 and len_arr[i] <= 10:
-            t = 120     # 120 secs for a word of length between 5 and 10 
-        else:
-            t = 300     # 300 secs for a word of length more than 10
+    #print(len(len_arr))
+    word_len = len(a)
+    if word_len > 0 and word_len <= 5:
+        t = 6    # 60 secs for a word of length between 0 and 5 
+    elif word_len > 5 and word_len <= 10:
+        t = 12     # 120 secs for a word of length between 5 and 10 
+    else:
+        t = 30     # 300 secs for a word of length more than 10
     # YOU CAN CHECK WITH LESSER TIME LIMIT AS WELL FOR SIMPLICITY
 
     print('You have ' + str(t) + ' seconds')
@@ -28,6 +28,7 @@ def countdown():
         sleep(1)   
     
     print('Time up!!')
+    print('Your word was '+a)
     sys.exit()    
 
 
@@ -48,7 +49,7 @@ def hangman(tally):
     count=tally[0]
     points=tally[1]
     
-    t1 = Thread(target=countdown)
+    t1 = Thread(target=countdown, args=(a,))
     t1.start()
 
     while(count>0):
